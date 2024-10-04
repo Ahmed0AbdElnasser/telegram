@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinning Wheel Game</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #333; color: white; font-family: Arial, sans-serif; }
+        #wheel { width: 300px; height: 300px; border-radius: 50%; background: conic-gradient(#ffcc00 0deg 60deg, #ff9900 60deg 120deg, #ff6600 120deg 180deg, #ff3300 180deg 240deg, #cc0000 240deg 300deg, #990000 300deg 360deg); }
+        #spinButton { margin-top: 20px; padding: 10px 20px; background-color: #ff9900; border: none; color: white; font-size: 18px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="wheel"></div>
+    <button id="spinButton">Spin the Wheel</button>
+
+    <script>
+        document.getElementById("spinButton").onclick = function () {
+            const randomDeg = Math.floor(Math.random() * 360);
+            document.getElementById("wheel").style.transition = "transform 4s ease-out";
+            document.getElementById("wheel").style.transform = `rotate(${randomDeg + 3600}deg)`;
+        }
+    </script>
+</body>
+</html>
