@@ -3,22 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinning Wheel Game</title>
+    <title>Lucky Bot Wheel</title>
     <style>
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #333; color: white; font-family: Arial, sans-serif; }
-        #wheel { width: 300px; height: 300px; border-radius: 50%; background: conic-gradient(#ffcc00 0deg 60deg, #ff9900 60deg 120deg, #ff6600 120deg 180deg, #ff3300 180deg 240deg, #cc0000 240deg 300deg, #990000 300deg 360deg); }
-        #spinButton { margin-top: 20px; padding: 10px 20px; background-color: #ff9900; border: none; color: white; font-size: 18px; cursor: pointer; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .wheel-container {
+            position: relative;
+        }
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 10px solid #ffcc00;
+            background: conic-gradient(#ffcc00 0deg 60deg, #ff9900 60deg 120deg, #ff6600 120deg 180deg, #ff3300 180deg 240deg, #cc0000 240deg 300deg, #990000 300deg 360deg);
+            animation: spin 0s;
+        }
+        .arrow {
+            position: absolute;
+            top: -40px;
+            left: 130px;
+            width: 40px;
+            height: 40px;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 40px solid #ffcc00;
+        }
+        .spin-btn {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #ff6600;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .invite-btn {
+            margin-top: 10px;
+            padding: 10px 25px;
+            background-color: #00cc44;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        @keyframes spin {
+            from {transform: rotate(0deg);}
+            to {transform: rotate(360deg);}
+        }
     </style>
 </head>
 <body>
-    <div id="wheel"></div>
-    <button id="spinButton">Spin the Wheel</button>
+    <div class="container">
+        <h1>🎯 Spin the Wheel and Win Prizes!</h1>
+        <div class="wheel-container">
+            <div class="arrow"></div>
+            <div class="wheel" id="wheel"></div>
+        </div>
+        <button class="spin-btn" id="spinBtn">Spin</button>
+        <button class="invite-btn">💌 Invite Friends</button>
+    </div>
 
     <script>
-        document.getElementById("spinButton").onclick = function () {
+        document.getElementById("spinBtn").onclick = function () {
+            const wheel = document.getElementById("wheel");
             const randomDeg = Math.floor(Math.random() * 360);
-            document.getElementById("wheel").style.transition = "transform 4s ease-out";
-            document.getElementById("wheel").style.transform = `rotate(${randomDeg + 3600}deg)`;
+            wheel.style.transition = "transform 4s ease-out";
+            wheel.style.transform = `rotate(${randomDeg + 3600}deg)`;
         }
     </script>
 </body>
